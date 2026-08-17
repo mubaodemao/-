@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, user-scalable=no">
+<meta name="theme-color" content="#0b1026">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="description" content="今天起飞不起飞？按一下，让轮盘替你决定！">
+<title>今天起飞不起飞</title>
+<link rel="manifest" href="manifest.json">
+<link rel="icon" href="assets/icon-192.png">
+<link rel="apple-touch-icon" href="assets/icon-192.png">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<div class="page">
+
+  <!-- 品牌区 -->
+  <header class="brand">
+    <div class="logo">✈️</div>
+    <h1>今天起飞不起飞</h1>
+    <p>按一下，让轮盘替你决定今天的状态</p>
+  </header>
+
+  <!-- 模式切换 -->
+  <nav class="seg" id="modeSeg">
+    <button type="button" data-mode="btn" class="on">🎯 按钮版</button>
+    <button type="button" data-mode="wheel">🎡 轮盘版</button>
+  </nav>
+
+  <!-- 锁定横幅 -->
+  <div class="lock-banner" id="lockBanner" hidden>🔒 今天已选择「今日不起飞」，起飞功能已锁定</div>
+
+  <!-- 按钮版 -->
+  <section id="panel-btn" class="panel-fade">
+    <div class="card verdict" id="verdictBtn">
+      <div class="v-emoji" id="vb-emoji">🎲</div>
+      <div class="v-word" id="vb-word">未决定</div>
+      <div class="v-mult" id="vb-mult" style="display:none"></div>
+      <div class="v-saying" id="vb-saying">点击下方按钮，看看今天是哪一档</div>
+      <div class="v-date" id="vb-date"></div>
+      <div class="v-count" id="vb-count"></div>
+    </div>
+    <button class="big-btn" id="btnGo">转 一 下</button>
+  </section>
+
+  <!-- 轮盘版 -->
+  <section id="panel-wheel" class="panel-fade" hidden>
+    <div class="wheel-wrap">
+      <div class="wheel-box">
+        <div class="wheel-pointer"></div>
+        <div class="wheel" id="wheel"></div>
+        <button class="wheel-center" id="wheelCenter" type="button" aria-label="转动轮盘">开始</button>
+      </div>
+      <button class="big-btn" id="wheelGo">🎡 转 一 下</button>
+    </div>
+    <div class="card verdict" id="verdictWheel" style="margin-top:16px">
+      <div class="v-emoji" id="vw-emoji">🎡</div>
+      <div class="v-word" id="vw-word">未决定</div>
+      <div class="v-mult" id="vw-mult" style="display:none"></div>
+      <div class="v-saying" id="vw-saying">点击按钮或点中间 GO，让轮盘停在你今天的档位上</div>
+      <div class="v-date" id="vw-date"></div>
+      <div class="v-count" id="vw-count"></div>
+    </div>
+  </section>
+
+  <!-- 日历（两页联动） -->
+  <div class="card cal-card">
+    <div class="section-title" style="margin:0 0 12px">📅 我的日历</div>
+    <div id="calBox"></div>
+    <div style="font-size:12px; color:var(--text-dim); margin-top:10px; display:flex; gap:12px; flex-wrap:wrap">
+      <span>🚀 大飞特飞</span><span>✈️ 起飞</span><span>🪁 小飞一下</span><span>🛋️ 不起飞</span><span>💤 今日不起飞</span>
+    </div>
+  </div>
+
+  <!-- 次数统计 -->
+  <div class="card" style="margin-top:16px">
+    <div class="section-title" style="margin:0 0 10px">📊 出现次数</div>
+    <div id="countBox"></div>
+  </div>
+
+  <!-- 起飞时间计时器 -->
+  <div class="card" style="margin-top:16px">
+    <div class="section-title" style="margin:0 0 4px">⏱️ 起飞时间</div>
+    <div class="timer-display" id="timerDisplay">00:00:00</div>
+    <button class="big-btn timer-btn" id="timerBtn">▶ 开始</button>
+    <div class="timer-msg" id="timerMsg"></div>
+    <div class="stat-grid" style="margin-top:12px; gap:8px">
+      <div class="card stat" style="padding:12px"><div class="num sm" id="tTotal">0</div><div class="lab">起飞次数</div></div>
+      <div class="card stat" style="padding:12px"><div class="num sm" id="tTotalTime">00:00:00</div><div class="lab">总时长</div></div>
+      <div class="card stat" style="padding:12px"><div class="num sm" id="tAvg">00:00:00</div><div class="lab">平均时长</div></div>
+      <div class="card stat" style="padding:12px"><div class="num sm" id="tMax">00:00:00</div><div class="lab">最长一次</div></div>
+    </div>
+    <div class="section-title" style="font-size:13px; margin:14px 2px 8px">🕘 最近记录</div>
+    <div id="tList"></div>
+  </div>
+
+  <!-- 起飞勋章 -->
+  <div class="card" style="margin-top:16px">
+    <div class="section-title" style="margin:0 0 10px">💤 起飞勋章</div>
+    <div class="badges" id="badgeBox"></div>
+  </div>
+
+</div>
+
+<!-- 底部导航 -->
+<nav class="bottom-nav">
+  <div class="inner">
+    <a href="index.html" class="on"><span class="ic">🎡</span>每日起飞</a>
+    <a href="checkin.html"><span class="ic">💤</span>不起飞时刻</a>
+    <a href="report.html"><span class="ic">📈</span>报告</a>
+    <a href="settings.html"><span class="ic">⚙️</span>设置</a>
+  </div>
+</nav>
+
+<script src="js/settings.js"></script>
+<script src="js/sound.js"></script>
+<script src="js/calendar.js"></script>
+<script src="js/main.js"></script>
+<script>
+if ('serviceWorker' in navigator) { navigator.serviceWorker.register('sw.js').catch(function(){}); }
+</script>
+<div class="ver" id="verTag">木宝制作 v3.0</div>
+
+<!-- 氛围音乐卡片：可播放/暂停/隐藏，文字与抽奖结果同步 -->
+<div class="music-card" id="musicCard">
+  <div class="mc-head">
+    <span class="mc-emoji">🎵</span>
+    <span class="mc-title">氛围电台</span>
+    <button class="mc-hide" id="mcHide" type="button" aria-label="隐藏音乐卡片">✕</button>
+  </div>
+  <div class="mc-word">
+    <b class="mc-w" id="mcW">未决定</b>
+    <span class="mc-s" id="mcS">点一下界面，音乐自动响起，陪你一起起飞</span>
+  </div>
+  <button class="mc-btn" id="mcBtn" type="button">🎵 播放音乐</button>
+</div>
+<button class="music-float" id="musicFloat" type="button" hidden aria-label="显示音乐卡片">🎵</button>
+<script src="js/music.js"></script>
+</body>
+</html>

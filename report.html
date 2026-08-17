@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, user-scalable=no">
+<meta name="theme-color" content="#0b1026">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="description" content="起飞数据周报/月报">
+<title>数据报告 · 今天起飞不起飞</title>
+<link rel="manifest" href="manifest.json">
+<link rel="icon" href="assets/icon-192.png">
+<link rel="apple-touch-icon" href="assets/icon-192.png">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<div class="page">
+
+  <header class="brand">
+    <div class="logo">📈</div>
+    <h1>数据报告</h1>
+    <p>看看这段时间的起飞表现</p>
+  </header>
+
+  <nav class="seg" id="reportSeg">
+    <button type="button" data-range="week" class="on">📅 本周</button>
+    <button type="button" data-range="month">📆 本月</button>
+  </nav>
+
+  <div class="stat-grid">
+    <div class="card stat"><div class="num green" id="rFlyDays">0</div><div class="lab">起飞天数</div></div>
+    <div class="card stat"><div class="num gold" id="rEndureDays">0</div><div class="lab">今日不起飞天数</div></div>
+    <div class="card stat"><div class="num" id="rTimes">0</div><div class="lab">计时次数</div></div>
+    <div class="card stat"><div class="num sm" id="rTotal">00:00:00</div><div class="lab">总时长</div></div>
+    <div class="card stat"><div class="num sm" id="rAvg">00:00:00</div><div class="lab">平均时长</div></div>
+    <div class="card stat"><div class="num sm" id="rMax">00:00:00</div><div class="lab">最长一次</div></div>
+  </div>
+
+  <div class="card">
+    <div class="section-title" style="margin:0 0 8px">🎰 各档出现（按天）</div>
+    <div id="rKinds"></div>
+  </div>
+
+  <div class="card" style="margin-top:16px">
+    <div class="section-title" style="margin:0 0 8px">💬 一句话总结</div>
+    <div id="rSummary" style="font-size:15px; line-height:1.7; color:var(--text)"></div>
+  </div>
+
+</div>
+
+<!-- 底部导航 -->
+<nav class="bottom-nav">
+  <div class="inner">
+    <a href="index.html"><span class="ic">🎡</span>每日起飞</a>
+    <a href="checkin.html"><span class="ic">💤</span>不起飞时刻</a>
+    <a href="report.html" class="on"><span class="ic">📈</span>报告</a>
+    <a href="settings.html"><span class="ic">⚙️</span>设置</a>
+  </div>
+</nav>
+
+<script src="js/settings.js"></script>
+<script src="js/calendar.js"></script>
+<script src="js/report.js"></script>
+<script>
+if ('serviceWorker' in navigator) { navigator.serviceWorker.register('sw.js').catch(function(){}); }
+</script>
+<div class="ver" id="verTag">木宝制作 v3.0</div>
+
+<!-- 氛围音乐卡片：可播放/暂停/隐藏/拖动，文字与抽奖结果同步（全页面悬浮） -->
+<div class="music-card" id="musicCard">
+  <div class="mc-head">
+    <span class="mc-emoji">🎵</span>
+    <span class="mc-title">氛围电台</span>
+    <button class="mc-hide" id="mcHide" type="button" aria-label="隐藏音乐卡片">✕</button>
+  </div>
+  <div class="mc-word">
+    <b class="mc-w" id="mcW">未决定</b>
+    <span class="mc-s" id="mcS">点一下界面，音乐自动响起，陪你一起起飞</span>
+  </div>
+  <button class="mc-btn" id="mcBtn" type="button">🎵 播放音乐</button>
+</div>
+<button class="music-float" id="musicFloat" type="button" hidden aria-label="显示音乐卡片">🎵</button>
+<script src="js/music.js"></script>
+</body>
+</html>

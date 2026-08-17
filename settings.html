@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, user-scalable=no">
+<meta name="theme-color" content="#0b1026">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="description" content="个性化设置与数据备份">
+<title>设置 · 今天起飞不起飞</title>
+<link rel="manifest" href="manifest.json">
+<link rel="icon" href="assets/icon-192.png">
+<link rel="apple-touch-icon" href="assets/icon-192.png">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<div class="page" id="settingsApp">
+
+  <header class="brand">
+    <div class="logo">⚙️</div>
+    <h1>设置</h1>
+    <p>按你的习惯定制这个小应用      <br>📮 如遇 Bug 或有建议，请联系 QQ：3796532735<br>🌐 本项目已开源：<a href="#" id="ghLink" target="_blank" rel="noopener" style="color:var(--green)">GitHub 开源仓库（即将上线）</a>
+    </p>
+  </header>
+
+  <!-- 背景 -->
+  <div class="card">
+    <div class="section-title" style="margin:0 0 10px">🎨 背景亮度</div>
+    <input type="range" id="bgOp" min="0.4" max="1" step="0.05" style="width:100%">
+    <div style="font-size:12px; color:var(--text-dim); margin-top:6px" id="bgOpVal">100%</div>
+  </div>
+
+  <!-- 字体 -->
+  <div class="card" style="margin-top:16px">
+    <div class="section-title" style="margin:0 0 10px">🔤 字体大小</div>
+    <div class="seg" style="margin-bottom:0">
+      <button type="button" data-font="0.9">小</button>
+      <button type="button" data-font="1">中</button>
+      <button type="button" data-font="1.15">大</button>
+    </div>
+  </div>
+
+  <!-- 音效震动 -->
+  <div class="card" style="margin-top:16px">
+    <div class="section-title" style="margin:0 0 6px">🎛️ 反馈</div>
+    <div class="switch-row">
+      <span>🔊 音效</span>
+      <label class="switch"><input type="checkbox" id="optSound"><i></i></label>
+    </div>
+    <div class="switch-row">
+      <span>📳 震动（手机）</span>
+      <label class="switch"><input type="checkbox" id="optVibrate"><i></i></label>
+    </div>
+  </div>
+
+
+  <!-- 数据备份 -->
+  <div class="card" style="margin-top:16px">
+    <div class="section-title" style="margin:0 0 10px">💾 数据备份</div>
+    <p style="font-size:13px; color:var(--text-dim); margin-bottom:12px">数据保存在本机浏览器，换设备或清缓存前先导出一份，防止丢失。      <br>📮 如遇 Bug 或有建议，请联系 QQ：3796532735<br>🌐 本项目已开源：<a href="#" id="ghLink" target="_blank" rel="noopener" style="color:var(--green)">GitHub 开源仓库（即将上线）</a>
+    </p>
+    <div style="display:flex; gap:10px">
+      <button class="big-btn" id="exportBtn" style="flex:1; font-size:14px; letter-spacing:1px">📤 导出数据</button>
+      <button class="big-btn ghost" id="importBtn" style="flex:1; font-size:14px; letter-spacing:1px">📥 导入数据</button>
+      <input type="file" id="importFile" accept=".json,application/json" hidden>
+    </div>
+  </div>
+
+  <!-- 清空打卡数据 -->
+  <div class="card" style="margin-top:16px">
+    <div class="section-title" style="margin:0 0 8px">🗑️ 清空打卡数据</div>
+    <p style="font-size:13px; color:var(--text-dim); margin-bottom:12px">清空所有「今日不起飞」打卡记录和庆祝标记，连续天数从 0 重新开始。      <br>📮 如遇 Bug 或有建议，请联系 QQ：3796532735<br>🌐 本项目已开源：<a href="#" id="ghLink" target="_blank" rel="noopener" style="color:var(--green)">GitHub 开源仓库（即将上线）</a>
+    </p>
+    <button class="big-btn danger" id="clearDataBtn" style="letter-spacing:2px">🗑️ 清空打卡数据</button>
+  </div>
+
+  <!-- 关于 -->
+  <div class="card" style="margin-top:16px">
+    <div class="section-title" style="margin:0 0 8px">ℹ️ 关于</div>
+        <p style="font-size:13px; color:var(--text-dim); line-height:1.9">
+      「今天起飞不起飞」v2.0 —— 随缘决策小工具<br>
+      🎯 按钮 / 🎡 轮盘：一秒决定今天是"起飞"还是"蓄力"<br>
+      🎲 各档概率：大飞特飞 10% ｜ 起飞 35% ｜ 小飞一下 20% ｜ 不起飞 35%<br>
+      📅 联动日历：起飞变绿、不起飞变红，一目了然<br>
+      ⏱️ 起飞计时：记录每一次起飞时长与数据<br>
+      🏅 成就勋章：连续坚持，解锁专属称号<br>
+      🎵 氛围电台：首页可开、可关、可隐藏，抽完自动播报同款文案<br>
+      🔐 隐私：所有数据只保存在你自己的设备，绝不上传<br>
+      ⚠️ 仅限已满 18 周岁用户使用，请量力而行，健康第一
+          <br>📮 如遇 Bug 或有建议，请联系 QQ：3796532735<br>🌐 本项目已开源：<a href="#" id="ghLink" target="_blank" rel="noopener" style="color:var(--green)">GitHub 开源仓库（即将上线）</a>
+    </p>
+  </div>
+
+</div>
+
+<!-- 底部导航 -->
+<nav class="bottom-nav">
+  <div class="inner">
+    <a href="index.html"><span class="ic">🎡</span>每日起飞</a>
+    <a href="checkin.html"><span class="ic">💤</span>不起飞时刻</a>
+    <a href="report.html"><span class="ic">📈</span>报告</a>
+    <a href="settings.html" class="on"><span class="ic">⚙️</span>设置</a>
+  </div>
+</nav>
+
+<script src="js/settings.js"></script>
+<script>
+if ('serviceWorker' in navigator) { navigator.serviceWorker.register('sw.js').catch(function(){}); }
+</script>
+<div class="ver" id="verTag">木宝制作 v3.0</div>
+
+<!-- 氛围音乐卡片：可播放/暂停/隐藏/拖动，文字与抽奖结果同步（全页面悬浮） -->
+<div class="music-card" id="musicCard">
+  <div class="mc-head">
+    <span class="mc-emoji">🎵</span>
+    <span class="mc-title">氛围电台</span>
+    <button class="mc-hide" id="mcHide" type="button" aria-label="隐藏音乐卡片">✕</button>
+  </div>
+  <div class="mc-word">
+    <b class="mc-w" id="mcW">未决定</b>
+    <span class="mc-s" id="mcS">点一下界面，音乐自动响起，陪你一起起飞</span>
+  </div>
+  <button class="mc-btn" id="mcBtn" type="button">🎵 播放音乐</button>
+</div>
+<button class="music-float" id="musicFloat" type="button" hidden aria-label="显示音乐卡片">🎵</button>
+<script src="js/music.js"></script>
+
+</body>
+</html>

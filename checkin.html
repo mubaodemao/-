@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, user-scalable=no">
+<meta name="theme-color" content="#0b1026">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="description" content="今日不起飞，点击记录，攒出起飞的能量">
+<title>今日不起飞 · 今天起飞不起飞</title>
+<link rel="manifest" href="manifest.json">
+<link rel="icon" href="assets/icon-192.png">
+<link rel="apple-touch-icon" href="assets/icon-192.png">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<div class="page">
+
+  <!-- 品牌区 -->
+  <header class="brand">
+    <div class="logo">💤</div>
+    <h1>今日不起飞</h1>
+    <p>点一下，记录今天不起飞</p>
+  </header>
+
+  <!-- 不起飞按钮 -->
+  <button class="big-btn endure-btn" id="endureBtn" style="letter-spacing:6px">💤 今日不起飞</button>
+  <div class="card endure-status" id="endureStatus" hidden>
+    <div class="e">✅</div>
+    <div>今天已不起飞，干得漂亮！</div>
+    <div style="font-size:12px; color:var(--text-dim); margin-top:4px">明天继续加油</div>
+  </div>
+
+  <!-- 统计 -->
+  <div class="stat-grid" style="margin-top:16px">
+    <div class="card stat">
+      <div class="num green" id="weekNum">0/7</div>
+      <div class="lab">本周不起飞天数</div>
+    </div>
+    <div class="card stat">
+      <div class="num gold" id="streakNum">0</div>
+      <div class="lab">连续不起飞天数</div>
+    </div>
+  </div>
+
+  <!-- 日历（两页联动） -->
+  <div class="card cal-card" style="margin-top:16px">
+    <div class="section-title" style="margin:0 0 12px">📅 我的日历</div>
+    <div id="calBox"></div>
+    <div style="font-size:12px; color:var(--text-dim); margin-top:10px; display:flex; gap:12px; flex-wrap:wrap">
+      <span>🚀 大飞特飞</span><span>✈️ 起飞</span><span>🪁 小飞一下</span><span>🛋️ 不起飞</span><span>💤 今日不起飞</span>
+    </div>
+  </div>
+
+  <!-- 不起飞勋章 -->
+  <div class="card" style="margin-top:16px">
+    <div class="section-title" style="margin:0 0 10px">🏅 不起飞勋章</div>
+    <div class="badges" id="badgeBox"></div>
+  </div>
+
+  <div style="text-align:center; color:var(--text-dim); font-size:12px; margin-top:18px">
+    数据保存在本机浏览器，清缓存会丢失哦
+  </div>
+
+</div>
+
+<!-- 底部导航 -->
+<nav class="bottom-nav">
+  <div class="inner">
+    <a href="index.html"><span class="ic">🎡</span>每日起飞</a>
+    <a href="checkin.html" class="on"><span class="ic">💤</span>不起飞时刻</a>
+    <a href="report.html"><span class="ic">📈</span>报告</a>
+    <a href="settings.html"><span class="ic">⚙️</span>设置</a>
+  </div>
+</nav>
+
+<div class="toast" id="toast"></div>
+
+<script src="js/settings.js"></script>
+<script src="js/sound.js"></script>
+<script src="js/calendar.js"></script>
+<script src="js/checkin.js"></script>
+<script>
+if ('serviceWorker' in navigator) { navigator.serviceWorker.register('sw.js').catch(function(){}); }
+</script>
+<div class="ver" id="verTag">木宝制作 v3.0</div>
+
+<!-- 氛围音乐卡片：可播放/暂停/隐藏/拖动，文字与抽奖结果同步（全页面悬浮） -->
+<div class="music-card" id="musicCard">
+  <div class="mc-head">
+    <span class="mc-emoji">🎵</span>
+    <span class="mc-title">氛围电台</span>
+    <button class="mc-hide" id="mcHide" type="button" aria-label="隐藏音乐卡片">✕</button>
+  </div>
+  <div class="mc-word">
+    <b class="mc-w" id="mcW">未决定</b>
+    <span class="mc-s" id="mcS">点一下界面，音乐自动响起，陪你一起起飞</span>
+  </div>
+  <button class="mc-btn" id="mcBtn" type="button">🎵 播放音乐</button>
+</div>
+<button class="music-float" id="musicFloat" type="button" hidden aria-label="显示音乐卡片">🎵</button>
+<script src="js/music.js"></script>
+</body>
+</html>
