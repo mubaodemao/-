@@ -84,14 +84,15 @@
   <!-- 起飞时间计时器 -->
   <div class="card" style="margin-top:16px">
     <div class="section-title" style="margin:0 0 4px">⏱️ 起飞时间</div>
-    <div class="timer-display" id="timerDisplay">00:00:00</div>
+    <div class="timer-display" id="timerDisplay">00:00:00.000</div>
+    <div class="timer-taunt" id="timerTaunt">🐟 还没开始计时，先别急着起飞</div>
     <button class="big-btn timer-btn" id="timerBtn">▶ 开始</button>
     <div class="timer-msg" id="timerMsg"></div>
     <div class="stat-grid" style="margin-top:12px; gap:8px">
       <div class="card stat" style="padding:12px"><div class="num sm" id="tTotal">0</div><div class="lab">起飞次数</div></div>
-      <div class="card stat" style="padding:12px"><div class="num sm" id="tTotalTime">00:00:00</div><div class="lab">总时长</div></div>
-      <div class="card stat" style="padding:12px"><div class="num sm" id="tAvg">00:00:00</div><div class="lab">平均时长</div></div>
-      <div class="card stat" style="padding:12px"><div class="num sm" id="tMax">00:00:00</div><div class="lab">最长一次</div></div>
+      <div class="card stat" style="padding:12px"><div class="num sm" id="tTotalTime">00:00:00.000</div><div class="lab">总时长</div></div>
+      <div class="card stat" style="padding:12px"><div class="num sm" id="tAvg">00:00:00.000</div><div class="lab">平均时长</div></div>
+      <div class="card stat" style="padding:12px"><div class="num sm" id="tMax">00:00:00.000</div><div class="lab">最长一次</div></div>
     </div>
     <div class="section-title" style="font-size:13px; margin:14px 2px 8px">🕘 最近记录</div>
     <div id="tList"></div>

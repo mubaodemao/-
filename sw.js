@@ -1,5 +1,5 @@
 /* 今天起飞不起飞 —— Service Worker（离线可用 + 自动更新） */
-const CACHE = 'lfq-v13';
+const CACHE = 'lfq-v16';
 const ASSETS = [
   './',
   './index.html',
